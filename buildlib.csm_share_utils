@@ -47,11 +47,12 @@ def buildlib(bldroot, installpath, case):
     gmake_args = get_standard_makefile_args(case, shared_lib=True)
     comp_interface = case.get_value("COMP_INTERFACE")
     cimeroot = case.get_value("CIMEROOT")
+    srcroot = case.get_value("SRCROOT")
     caseroot = case.get_value("CASEROOT")
     libroot = case.get_value("LIBROOT")
 
     filepath = [os.path.join(caseroot,"SourceMods","src.share"),
-                os.path.join(cimeroot,"..","share","utils"),
+                os.path.join(cimeroot,"..","share","utils","utils"),
                 os.path.join(cimeroot,"..","share","utils","RandNum","src"),
                 os.path.join(cimeroot,"..","share","utils","RandNum","src","dsfmt_f03"),
                 os.path.join(cimeroot,"..","share","utils","RandNum","src","kissvec"),
@@ -61,6 +62,7 @@ def buildlib(bldroot, installpath, case):
         use_esmf = "esmf"
     else:
         use_esmf = "noesmf"
+        filepath.append(os.path.join(cimeroot,"..","share","utils","utils","esmf_wrf_timemgr"))
 
     comp_interface = case.get_value("COMP_INTERFACE")
     ninst_value = case.get_value("NINST_VALUE")
