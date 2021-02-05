@@ -1,0 +1,6 @@
+# editor files
+*~
+*.bak
+
+# generated build files
+buildlib.csm_share_utilsc
