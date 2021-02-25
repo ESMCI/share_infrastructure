@@ -52,17 +52,17 @@ def buildlib(bldroot, installpath, case):
     libroot = case.get_value("LIBROOT")
 
     filepath = [os.path.join(caseroot,"SourceMods","src.share"),
-                os.path.join(cimeroot,"..","share","utils","utils"),
-                os.path.join(cimeroot,"..","share","utils","RandNum","src"),
-                os.path.join(cimeroot,"..","share","utils","RandNum","src","dsfmt_f03"),
-                os.path.join(cimeroot,"..","share","utils","RandNum","src","kissvec"),
-                os.path.join(cimeroot,"..","share","utils","RandNum","src","mt19937")]
+                os.path.join(srcroot,"share","utils","utils"),
+                os.path.join(srcroot,"share","utils","RandNum","src"),
+                os.path.join(srcroot,"share","utils","RandNum","src","dsfmt_f03"),
+                os.path.join(srcroot,"share","utils","RandNum","src","kissvec"),
+                os.path.join(srcroot,"share","utils","RandNum","src","mt19937")]
 
     if case.get_value("USE_ESMF_LIB"):
         use_esmf = "esmf"
     else:
         use_esmf = "noesmf"
-        filepath.append(os.path.join(cimeroot,"..","share","utils","utils","esmf_wrf_timemgr"))
+        filepath.append(os.path.join(srcroot,"share","utils","utils","esmf_wrf_timemgr"))
 
     comp_interface = case.get_value("COMP_INTERFACE")
     ninst_value = case.get_value("NINST_VALUE")
@@ -102,9 +102,9 @@ def buildlib(bldroot, installpath, case):
         if not os.path.isdir(os.path.join(installdir,ndir)):
             os.makedirs(os.path.join(installdir,ndir))
     # copy some header files
-    for _file in glob.iglob(os.path.join(cimeroot,"..","share","utils","include","*")):
+    for _file in glob.iglob(os.path.join(srcroot,"share","utils","include","*")):
         copyifnewer(_file, os.path.join(installdir, "include", os.path.basename(_file)))
-    for _file in glob.iglob(os.path.join(cimeroot,"..","share","utils","RandNum","include","*")):
+    for _file in glob.iglob(os.path.join(srcroot,"share","utils","RandNum","include","*")):
         copyifnewer(_file, os.path.join(installdir, "include", os.path.basename(_file)))
 
     # This runs the make command
